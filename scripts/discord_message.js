@@ -1,4 +1,4 @@
-import config from './config.json';
+import config from './config.json' assert { type: 'JSON' };;
 
 function initialize() {
     $('#Submit').click(send_message_to_server);
