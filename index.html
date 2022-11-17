@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--	THANK YOU FOR USING OUR CODE.
-	TO SUPPORT US PLEASE VISIT
-	https://g9.yt/pspay
-	SCRIPT DEVELOPER: https://g9.yt/daniel
-	WEBSITE BY: https://g9.yt/tom
-	
-	- PYTHONA STUDIOS
--->
+    
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"> </script>
+<script src="scripts/discord_message.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+        initialize();
+    });
+</script>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Pythona Studios Discord Announcement</title>
@@ -184,17 +185,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"> </script>
-	<script> $(function () {
-			$('#Submit').click(function (e) {
-				var url = $("#url").val(); var content = $("#content").val(); $.post(url, { "content": content }, function () {
-					document.getElementById('wb-text').innerHTML = "Message Sent to Discord.";
-					document.getElementById("form").style.display = "none";
-					setTimeout(() => document.location.reload(), 5000);
-				});
-			});
-		}); </script>
 
 
 </body>
