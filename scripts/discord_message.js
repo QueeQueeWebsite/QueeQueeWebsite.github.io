@@ -1,13 +1,14 @@
 function initialize() {
     $('#Submit').click(send_message_to_server);
     const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-    console.log(params);
+    console.log(params.name);
 }
 
 function send_message_to_server(message = "test_message"){
-    var url = fetch('./config.json')
+    var url = fetch('./scripts/config.json')
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => json.url);
+    console.log(url);
 
     var content = $("#content").val(); 
     $.post(url, { "content": content }, function () {
