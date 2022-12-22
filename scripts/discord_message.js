@@ -5,7 +5,7 @@ function initialize() {
 }
 async function get_url_helper(){
 	return fetch('./scripts/config.json')
-    .then(response.json());
+    .then((response) => response.json()).then((result) => result.url);
 }
 async function get_url(){
 	let url = await get_url_helper();
