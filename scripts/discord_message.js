@@ -3,13 +3,24 @@ function initialize() {
     const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
     console.log(params.name);
 }
-
-function send_message_to_server(message = "test_message"){
-    var url = fetch('./scripts/config.json')
-    .then((response) => {return response.json();})
+async function get_url_helper(){
+	return fetch('./scripts/config.json')
+    .then(response.json());
+}
+async function get_url(){
+	let url = await get_url_helper();
     console.log(url);
+}
+async function post_message(){
 
-    var content = $("#content").val(); 
+}
+function send_message_to_server(message = "test_message"){
+    /*var url = fetch('./scripts/config.json')
+    .then((response) => {return response.json();})
+    console.log(url);*/
+    var url = get_url();
+
+    //var content = $("#content").val(); 
     /*$.post(url, { "content": content }, function () {
 					document.getElementById('wb-text').innerHTML = "Message Sent to Discord.";
 					document.getElementById("form").style.display = "none";
