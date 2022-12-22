@@ -6,9 +6,8 @@ function initialize() {
 
 function send_message_to_server(message = "test_message"){
     var url = fetch('./scripts/config.json')
-    .then((response) => response.json())
-    .then((json) => json.url);
-    console.log(url);
+    .then((response) => {return response.json();})
+    console.log(url.url);
 
     var content = $("#content").val(); 
     $.post(url, { "content": content }, function () {
