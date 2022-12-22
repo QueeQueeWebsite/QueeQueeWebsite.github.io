@@ -1,7 +1,7 @@
 function initialize() {
     $('#Submit').click(() => {send_message_to_server()});
     const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-    console.log(params.name);
+    console.log(params);
 }
 async function get_url(){
 	return fetch('./scripts/config.json')
