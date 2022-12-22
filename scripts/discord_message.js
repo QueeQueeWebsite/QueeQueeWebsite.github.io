@@ -9,17 +9,12 @@ async function get_url(){
 }
 async function post_message(message){
     let url = await get_url()
-    var content = $("#content").val(); 
-    $.post(url, { "content": content }, function () {
-					document.getElementById('wb-text').innerHTML = "Message Sent to Discord.";
-					document.getElementById("form").style.display = "none";
-					setTimeout(() => document.location.reload(), 5000);
-                });
+    //var content = message;//$("#content").val(); 
+    $.post(url, { "content": message });
 }
 function send_message_to_server(message = "test_message"){
     /*var url = fetch('./scripts/config.json')
     .then((response) => {return response.json();})
     console.log(url);*/
     post_message(message);
-
 }
