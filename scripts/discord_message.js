@@ -1,7 +1,8 @@
+let props = {}; // empty object to hold all props, gets initialized by initialize()
 function initialize() {
     $('#Submit').click(() => {send_message_to_server()});
-    const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-    console.log(params);
+    let params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
+    props = params;
 }
 async function get_url(){
 	return fetch('./scripts/config.json')
@@ -10,7 +11,7 @@ async function get_url(){
 async function post_message(message){
     let url = await get_url()
     //var content = message;//$("#content").val(); 
-    console.log(message);
+    console.log(props.h);
     $.post(url, { "content": message });
 }
 function send_message_to_server(message = "test_message"){
