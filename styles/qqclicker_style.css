@@ -1,0 +1,44 @@
+.container { 
+  height: 200px;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.off-center {
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.dot {
+  height: 100px;
+  width: 100px;
+  /*margin:auto;
+  position: relative;*/
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot:active{
+    height: 96px;
+    width: 96px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+.clicker{
+    margin: auto;
+    top: 50%;
+    width: 100px;
+    padding: 10px;
+}
