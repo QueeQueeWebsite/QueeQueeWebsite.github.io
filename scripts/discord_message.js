@@ -1,5 +1,6 @@
 let props = {}; // empty object to hold all props, gets initialized by initialize()
 function exchange_code(){
+    const url = "https://discord.com/api/v10/";
     console.log('exchange called');
     console.log(props.code);
     const params = new URLSearchParams();
@@ -25,7 +26,9 @@ function exchange_code(){
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params
     })
-    .then(response => console.log(response.json()));
+    .then(response => console.log(response.json().access_token));
+
+
 }
 
 function initialize() {
