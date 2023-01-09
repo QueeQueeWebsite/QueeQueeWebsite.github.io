@@ -11,7 +11,7 @@ function exchange_code(){
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    fetch('https://discord.com/api/v10', {
+    fetch('https://discord.com/api/v10/oauth2/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: JSON.stringify(data)
