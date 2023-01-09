@@ -2,6 +2,14 @@ let props = {}; // empty object to hold all props, gets initialized by initializ
 function exchange_code(){
     console.log('exchange called');
     console.log(props.code);
+    const params = new URLSearchParams();
+    params.append('client_id','946542952946216960');
+    params.append('client_secret', 'S12fC9TFq7dqfKZ5HOOfL714pBRa2Wm7');
+    params.append('grant_type','authorization_code');
+    params.append('code', props.code);
+    params.append('redirect_uri', 'https://queequeewebsite.github.io');
+    params.append('scope','identify');
+
     data = {
         'client_id': '946542952946216960',
         'client_secret': 'S12fC9TFq7dqfKZ5HOOfL714pBRa2Wm7',
@@ -15,7 +23,7 @@ function exchange_code(){
     fetch('https://discord.com/api/v10/oauth2/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: JSON.stringify(data)
+        body: params
     })
     .then(response => console.log(response.json()));
 }
