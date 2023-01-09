@@ -1,6 +1,7 @@
 let props = {}; // empty object to hold all props, gets initialized by initialize()
 function exchange_code(){
     console.log('exchange called');
+    console.log(props.code);
     data = {
         'client_id': '946542952946216960',
         'client_secret': 'S12fC9TFq7dqfKZ5HOOfL714pBRa2Wm7',
