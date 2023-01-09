@@ -26,7 +26,7 @@ function exchange_code(){
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params
     })
-    .then(response => console.log(response.json().access_token));
+    .then(response => response.json()).then(data => console.log(data));
 
 
 }
