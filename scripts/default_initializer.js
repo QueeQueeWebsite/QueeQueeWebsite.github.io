@@ -11,17 +11,23 @@ function update_cookies_user(user_data){
     document.cookie = "id=" + user_data.id + cookie_addon;
     document.cookie = "discriminator=" + user_data.discriminator + cookie_addon;
 }
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 function get_cookie_user(){
     const return_user = {};
     const cookies = document.cookie;
-    return_user.username = cookies.username;
-    return_user.id = cookies.id;
-    return_user.discriminator = cookies.discriminator;
+    console.log('cookies from "get_cookie_user()" ' + cookies);
+    return_user.username = getCookie('username');
+    return_user.id = getCookie('id');
+    return_user.discriminator = getCookie('discriminator');
     return return_user;
 }
 function is_user_logged(){
     const cookies = get_cookie_user();
-    return !(cookies.username == undefined || cookies.id == undefined || cookies.discriminator == undefined)
+    return !(cookies.username == 'undefined' || cookies.id == 'undefined' || cookies.discriminator == 'undefined' || cookies.username == undefined || cookies.id == undefined || cookies.discriminator == undefined)
 }
 function exchange_code(){
     const url = "https://discord.com/api/v10";
@@ -57,6 +63,7 @@ function exchange_code(){
 function sidebar_initialize(){
     var path = window.location.pathname;
     var page = path.split("/").pop();
+    let page_names = ['Profile','']
     console.log( page );
     let sidebar = document.getElementById("sidebar");
     let new_link = document.createElement("a");
@@ -65,6 +72,11 @@ function sidebar_initialize(){
 }
 
 function default_initialize(){
+    if (window.opener && window.opener !== window) {
+        // you are in a popup so do nothing
+        console.log('popup?');
+        return
+    }
     let params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
     let popup = {};
     props = params;
@@ -79,6 +91,7 @@ function default_initialize(){
     else{ // user has entered site without a generated link
         if (is_user_logged()){
             // do nothing
+            console.log('user is logged');
         }
         else{ // if not logged in send them to login page
             console.log('should show login page');
