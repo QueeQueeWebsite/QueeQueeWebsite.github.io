@@ -63,12 +63,21 @@ function exchange_code(){
 function sidebar_initialize(){
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    let page_names = ['Profile','']
+    let page_names = ['Profile','QueeQueeClicker','Stocks']
+    let hrefs = ['index.html','pages/qqclicker.html']
     console.log( page );
     let sidebar = document.getElementById("sidebar");
-    let new_link = document.createElement("a");
-    new_link.innerHTML = "special_generated_link";
-    sidebar.appendChild(new_link);
+    for (page in page_names) {
+        let new_link = document.createElement("a");
+        new_link.innerHTML = page_names[page];
+        sidebar.appendChild(new_link);
+        let href = hrefs[page];
+        if (page == 'index.html'){
+            href = '../' + href;
+            new_link.class = 'active';
+        }
+        new_link.href = href;
+    }
 }
 
 function default_initialize(){
