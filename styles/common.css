@@ -1,0 +1,5 @@
+/*I want all pages to share this*/
+html {
+    color: #444;
+    font: 1rem/1.5 Lato;
+}
