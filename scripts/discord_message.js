@@ -3,11 +3,6 @@ let current_user = {};
 // this is the url to get user imgage
 let image_url = "https://cdn.discordapp.com/avatars/{ID}/{avatar_id).png"
 
-
-function initialize() {
-    //$('#Submit').click(() => {send_message_to_server()});
-    $('#Submit').click(() => {get_current_balance()});
-}
 async function get_url(){
 	return fetch('./scripts/config.json')
     .then((response) => response.json()).then((result) => result.url);
@@ -24,10 +19,13 @@ function send_message_to_server(message = "test_message"){
     console.log(url);*/
     post_message(message);
 }
-function get_current_balance(){
+function get_current_balance(name, discriminator, request){
     //NOTE: ip of server goes before ? below
-    balance = $.get('?name=Quinton&num=2732&request=balance')
+    balance = $.get(`?name=${name}&num=${discriminator}&request=${request}`)
     console.log(balance);
+}
+function add_funds() {
+    console.log('funds added');
 }
 function test_get_response(){
     let info = $.get('https://www.google.com');
