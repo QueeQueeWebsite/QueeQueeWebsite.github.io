@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<script src="../scripts/discord_message.js" type="text/javascript"></script>
+<script src="../scripts/default_initializer.js" type="text/javascript"></script>
+<script src="../scripts/csgo_unboxing.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+        default_initialize();
+        reset();
+
+    });
+</script>
+
+<head>
+	<meta charset="UTF-8">
+	<title>QueeQueeClicker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,300,400italic,700,900' rel='stylesheet'
+		type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="../styles/common.css">
+	<link rel="stylesheet" href="../styles/sidebar.css">
+	<link rel="stylesheet" href="../styles/stocks_style.css">
+    <link rel="stylesheet" href="../styles/unboxing_style.css">
+</head>
+<body>
+    
+    <div class="sidebar" id="sidebar">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div id=unbox-area>
+                <div class="arrow-down"></div>
+                <div id=cardList></div>
+            </div>
+            <button onclick="openCase();">Open</button>
+            <div id=dialog>
+                <div id=dialog-msg></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
