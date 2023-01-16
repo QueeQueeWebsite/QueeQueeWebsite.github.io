@@ -1,4 +1,68 @@
-//const Stocks = require("./stocks_api");
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function save_stock_data(stock_name, current, weekly){
+    let cookie_addon = ";SameSite=None" + ";secure";
+    document.cookie = "stock_name=" + stock_name + cookie_addon;
+    document.cookie = "current=" + current + cookie_addon;
+    document.cookie = "weekly=" + weekly + cookie_addon;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function buy_stock(stock_name, stock_price, amount) {
+    current_balance = get_current_balance()
+}
+
+async function stock_api_call(selected_stock){
+    //const Stocks = require("./stocks_api");
+    console.log(selected_stock);
+    let stocks = new Stocks('5XDDDMPH2142FJAQ');
+    let current_options = {
+                    symbol: selected_stock,
+                    interval: '1min',
+                    amount: 1
+                  };
+    let weekly_options = {
+                    symbol: selected_stock,
+                    interval: 'weekly',
+                    amount: 10
+                  };
+
+    let current_result = await stocks.timeSeries(current_options);
+    //await sleep(100);
+    let weekly_result = await stocks.timeSeries(weekly_options);
+    //console.log(weekly_result);
+    return [current_result, weekly_result]
+}
+
+function update_stock_ui(current_result, weekly_result, stock_name) {
+    $('#selected_stock').html(stock_name);
+    console.log(current_result);
+    //let current_price = current_result[0];
+    $('#current_price').html(current_result[0].open);
+
+}
+
+async function stock_selection_update(stock_name){
+    stock_data = await stock_api_call(stock_name);
+    current_result = stock_data[0];
+    weekly_result = stock_data[1];
+
+    save_stock_data(current_result, weekly_result, stock_name);
+    update_stock_ui(current_result, weekly_result, stock_name);
+}
+
+
+function load_saved_data() {
+
+}
+
 function searchBar_initialize(){
     const selected = document.querySelector(".selected");
     const optionsContainer = document.querySelector(".options-container");
@@ -18,14 +82,15 @@ function searchBar_initialize(){
     });
 
     optionsList.forEach(o => {
-    o.addEventListener("click", () => {
-        selected.innerHTML = o.querySelector("label").innerHTML;
-        optionsContainer.classList.remove("active");
-    });
+        o.addEventListener("click", () => {
+            selected.innerHTML = o.querySelector("label").innerHTML;
+            stock_selection_update(o.querySelector("label").innerHTML);
+            optionsContainer.classList.remove("active");
+        });
     });
 
     searchBox.addEventListener("keyup", function(e) {
-    filterList(e.target.value);
+        filterList(e.target.value);
     });
 
     const filterList = searchTerm => {
@@ -40,6 +105,7 @@ function searchBar_initialize(){
     });
     };
 }
+
 async function stocks_test(){
     let all_stocks = []
     await $.getJSON('https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/297344d8dc0a9d86b8d107449c851cc8/constituents_json.json', function(data) {
@@ -68,7 +134,6 @@ async function stocks_test(){
     });
 
     let searchDiv = $('.options-container');
-    console.log(searchDiv);
     for (stock of sorted_stocks) {
         symbol = stock;
         
@@ -89,14 +154,5 @@ async function stocks_test(){
         
         searchDiv.append(optionDiv);
     }
-    console.log(all_stocks);
-    //let stocks = new Stocks('5XDDDMPH2142FJAQ');
-    let options = {
-                    symbol: 'AAPL',
-                    interval: 'weekly',
-                    amount: 52
-                  };
-    //let result = await stocks.timeSeries(options);
-    //console.log(result);
     searchBar_initialize();
 }
