@@ -66,8 +66,8 @@ function strip_href(ref){
 function sidebar_initialize(){
     var path = window.location.pathname;
     var current_page = path.split("/").pop();
-    let page_names = ['Profile','QueeQueeClicker','Stocks']
-    let hrefs = ['index.html','pages/qqclicker.html','pages/stocks.html']
+    let page_names = ['Profile','QueeQueeClicker','Stocks','Unboxing']
+    let hrefs = ['index.html','pages/qqclicker.html','pages/stocks.html','pages/csgo_unboxing.html']
     let sidebar = document.getElementById("sidebar");
     for (page in page_names) {
         let new_link = document.createElement("a");
