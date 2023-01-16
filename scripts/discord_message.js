@@ -7,11 +7,11 @@ async function get_url(){
 	return fetch('./scripts/config.json')
     .then((response) => response.json()).then((result) => result.url);
 }
-async function post_message(message){
-    let url = await get_url()
+async function post_message(body){
+    
+    let url = 'http://127.0.0.1/';
     //var content = message;//$("#content").val(); 
-    console.log(props.h);
-    $.post(url, { "content": message });
+    $.post(url, body);
 }
 function send_message_to_server(message = "test_message"){
     /*var url = fetch('./scripts/config.json')
@@ -21,11 +21,19 @@ function send_message_to_server(message = "test_message"){
 }
 function get_current_balance(name, discriminator, request){
     //NOTE: ip of server goes before ? below
-    balance = $.get(`?name=${name}&num=${discriminator}&request=${request}`)
-    console.log(balance);
+    balance = $.get(`http://127.0.0.1:80?name=${name}&num=${discriminator}&request=${request}`);
+    balance_amount = balance.responseText;
+    return balance_amount;
 }
-function add_funds() {
-    console.log('funds added');
+function add_funds(funds) {
+    let user = get_cookie_user();
+    let body = {   
+                    name: user.username,
+                    discriminator: user.discriminator,
+                    request: 'add_funds',
+                    amount: funds
+                }
+    post_message(body);
 }
 function test_get_response(){
     let info = $.get('https://www.google.com');
