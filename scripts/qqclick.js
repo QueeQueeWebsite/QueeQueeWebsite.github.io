@@ -19,8 +19,12 @@ function cheat_detection(click_info){
 }
 function server_money_update(){
     console.log("server updated");
+    //console.log(get_current_balance('Quinton','2732','balance'));
+    if (session_data.current_earned == 0){
+        return
+    }
+    add_funds(session_data.current_earned / 10);
     session_data.current_earned = 0;
-    add_funds();
 }
 function click_cookie(args){
     cheat_detection(args);
