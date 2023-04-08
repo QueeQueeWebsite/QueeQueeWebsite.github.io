@@ -1,5 +1,7 @@
 /*SEARCHBAR*/
-
+p {
+  float:left;
+}
 .search-container {
   margin-top: 100px;
   padding: 32px;

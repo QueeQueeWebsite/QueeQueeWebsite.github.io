@@ -37,7 +37,7 @@ async function stock_api_call(selected_stock){
     let current_result = await stocks.timeSeries(current_options);
     //await sleep(100);
     let weekly_result = await stocks.timeSeries(weekly_options);
-    //console.log(weekly_result);
+    console.log(weekly_result);
     return [current_result, weekly_result]
 }
 
@@ -123,9 +123,10 @@ async function stocks_test(){
             if (symbol == undefined) {
                 symbol = stock['ACT Symbol'];
             }
+            let parsed_symbol = symbol.split('$')[0];
             // do not push repeats
-            if (!sorted_stocks.find((sym) => {return sym == symbol})){
-                sorted_stocks.push(symbol);
+            if (!sorted_stocks.find((sym) => {return sym == parsed_symbol})){
+                sorted_stocks.push(parsed_symbol);
             }
         }
     }

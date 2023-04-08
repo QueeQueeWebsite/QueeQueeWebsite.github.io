@@ -141,6 +141,10 @@ body {
     width: 100px;
     display: inline-block;
 }
+.bio-row p {
+    float:left;
+    word-wrap: break-word;
+}
 
 .bio-chart, .bio-desk {
     float: left;

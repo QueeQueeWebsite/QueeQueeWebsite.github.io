@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+#parentDiv button {
+  text-align: center;
+}
 
 #cardList {
   height: 100px;

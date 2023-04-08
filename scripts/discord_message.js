@@ -19,11 +19,10 @@ function send_message_to_server(message = "test_message"){
     console.log(url);*/
     post_message(message);
 }
-function get_current_balance(name, discriminator, request){
+async function get_current_balance(name, discriminator, request){
     //NOTE: ip of server goes before ? below
-    balance = $.get(`http://127.0.0.1:80?name=${name}&num=${discriminator}&request=${request}`);
-    balance_amount = balance.responseText;
-    return balance_amount;
+    balance = await $.get(`http://127.0.0.1:80?name=${name}&num=${discriminator}&request=${request}`);
+    return balance;
 }
 function add_funds(funds) {
     let user = get_cookie_user();
